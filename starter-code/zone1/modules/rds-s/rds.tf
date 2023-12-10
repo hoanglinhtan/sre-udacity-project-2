@@ -39,14 +39,14 @@ resource "aws_rds_cluster" "udacity_cluster-s" {
   depends_on = [aws_rds_cluster_parameter_group.cluster_pg-s]
 }
 
-# resource "aws_rds_cluster_instance" "udacity_instance-s" {
-#   count                = 2
-#   engine               = "aurora-mysql"
-#   identifier           = "udacity-db-instance-${count.index}-s"
-#   cluster_identifier   = aws_rds_cluster.udacity_cluster-s.id
-#   instance_class       = "db.t2.small"
-#   db_subnet_group_name = aws_db_subnet_group.udacity_db_subnet_group.name
-# }
+resource "aws_rds_cluster_instance" "udacity_instance-s" {
+  count                = 2
+  engine               = "aurora-mysql"
+  identifier           = "udacity-db-instance-${count.index}-s"
+  cluster_identifier   = aws_rds_cluster.udacity_cluster-s.id
+  instance_class       = "db.t2.small"
+  db_subnet_group_name = aws_db_subnet_group.udacity_db_subnet_group.name
+}
 
 resource "aws_security_group" "db_sg_2" {
   name   = "udacity-db-sg"
