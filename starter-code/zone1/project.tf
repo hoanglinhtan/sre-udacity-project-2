@@ -5,9 +5,9 @@ resource "kubernetes_namespace" "udacity" {
    depends_on = [
      module.project_eks
    ]
- }
+}
 
-  resource "kubernetes_service" "grafana-external" {
+resource "kubernetes_service" "grafana-external" {
   metadata {
     name      = "grafana-external"
     namespace = "monitoring"
